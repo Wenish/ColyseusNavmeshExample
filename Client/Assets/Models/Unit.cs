@@ -17,5 +17,8 @@ namespace Game.Models {
 
 		[Type(2, "number")]
 		public float moveSpeed = 0;
+
+		[Type(3, "number")]
+		public float rotation = 0;
 	}
 }

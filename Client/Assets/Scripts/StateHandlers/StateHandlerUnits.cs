@@ -27,6 +27,7 @@ namespace Game.Scripts.StateHandlers
 
             ControllerUnit controllerUnit = gameObjectUnit.GetComponent<ControllerUnit>();
             controllerUnit.Id = key;
+            controllerUnit.DesiredRotation.y = unit.rotation;
 
             _gameManager.Units.Add(key, gameObjectUnit);
             Debug.Log("Player Add");
@@ -44,6 +45,11 @@ namespace Game.Scripts.StateHandlers
                             controllerUnit.DesiredPosition.z = position.z;
                             
                             Debug.Log("position changed");
+                            break;
+                        }
+                        case "rotation":
+                        {
+                            controllerUnit.DesiredRotation.y = float.Parse(obj.Value.ToString());
                             break;
                         }
                     }
