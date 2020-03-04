@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@colyseus/monitor": "^0.12.1",
+    "bignumber.js": "^9.0.0",
     "colyseus": "^0.12.3",
     "express": "^4.17.1",
     "shortid": "^2.2.15"

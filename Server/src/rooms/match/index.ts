@@ -15,7 +15,10 @@ export default class Match extends Room<IState> {
     }
 
     // When room is initialized
-    onCreate (options: any) { }
+    onCreate (options: any) {
+        this.setPatchRate(1000 / 30);
+        this.setSimulationInterval(() => this.update()); 
+    }
 
     // Authorize client based on provided options before WebSocket handshake is complete
     onAuth (client: Client, options: any, request: http.IncomingMessage) {
@@ -48,4 +51,10 @@ export default class Match extends Room<IState> {
 
     // Cleanup callback, called after there are no more clients in the room. (see `autoDispose`)
     onDispose () { }
+
+    update () {
+        for (var id in this.state?.stateUnits?.units) {
+            this.state?.stateUnits?.units[id]?.update(this.clock.deltaTime)
+        }
+    }
 }
