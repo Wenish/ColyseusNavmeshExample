@@ -3,14 +3,15 @@ using TMPro;
 using System.Collections.Generic;
 using Colyseus;
 using Game.Models;
+using Game.Scripts.StateHandlers;
 
 namespace Game.Scripts
 {
     public class GameManager : MonoBehaviour
     {
         public TextMeshProUGUI ServerText; 
-        public GameObject PrefabPlayer;
-        public Dictionary<string, GameObject> Players = new Dictionary<string, GameObject>();
+        public GameObject PrefabUnit;
+        public Dictionary<string, GameObject> Units = new Dictionary<string, GameObject>();
         public Room<State> GameRoom;
         private Client _client;
         public async void Start()
@@ -37,6 +38,12 @@ namespace Game.Scripts
             GameRoom = await _client.JoinOrCreate<State>("match"/* , Dictionary of options */);
             
             ServerText.text = serverip + ":" + serverport + " room: " + roomname;
+
+            InitStateHandler();
+        }
+
+        private void InitStateHandler() {
+            var stateHandlerUnits = new StateHandlerUnits(GameRoom.State.stateUnits, this);
         }
 
         private void OnApplicationQuit()

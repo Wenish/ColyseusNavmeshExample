@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ServerText: {fileID: 0}
-  PrefabPlayer: {fileID: 8035110164388584723, guid: b3f535edbee2a1940a69e49021e309fb,
+  PrefabUnit: {fileID: 8035110164388584723, guid: b3f535edbee2a1940a69e49021e309fb,
     type: 3}
