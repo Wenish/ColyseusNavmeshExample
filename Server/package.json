@@ -19,6 +19,9 @@
     "bignumber.js": "^9.0.0",
     "colyseus": "^0.12.3",
     "express": "^4.17.1",
-    "shortid": "^2.2.15"
+    "fs-extra": "^8.1.0",
+    "navmesh": "^2.0.3",
+    "shortid": "^2.2.15",
+    "wavefront-obj-parser": "^2.0.1"
   }
 }

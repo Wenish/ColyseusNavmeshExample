@@ -5,9 +5,9 @@ import { State, IState } from './state';
 
 import actions, { Action } from './actions'
 import * as actionTypes from './actions/actionTypes';
+import utility from "../../utility";
 
 export default class Match extends Room<IState> {
-
     constructor () {
         console.log('----- NEW MATCH ROOM -----')
         super();
@@ -15,7 +15,10 @@ export default class Match extends Room<IState> {
     }
 
     // When room is initialized
-    onCreate (options: any) {
+    async onCreate (options: any) {
+        const navMesh = await utility.loadNavMesh('SampleSceneNavMesh')
+        this.state.navMesh = navMesh;
+        console.log('navmesh loaded')
         this.setPatchRate(1000 / 30);
         this.setSimulationInterval(() => this.update()); 
     }

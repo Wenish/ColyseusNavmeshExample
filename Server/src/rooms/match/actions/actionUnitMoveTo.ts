@@ -36,9 +36,16 @@ export const actionUnitMoveTo: Action<IState, Client> = (room, state, isServer, 
 
         const destination: Position = new Position(payload.x, 0, payload.z)
 
-        //TODO calculate path
+        const foundPath: any = state.navMesh.findPath({ x: unit.position.x, y: unit.position.z }, { x: destination.x, y: destination.z });
+        if (!foundPath || !foundPath.length) throw 'No path found'
 
-        const path: Position[] = [destination]
+        foundPath.shift()
+
+        const path: Position[] = []
+
+        foundPath.forEach(item => {
+            path.push(new Position(item.x, 0, item.y))
+        });
         
         unit.setMoveTo(path)
     } catch (err) {
