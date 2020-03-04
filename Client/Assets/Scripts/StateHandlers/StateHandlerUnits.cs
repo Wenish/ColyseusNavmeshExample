@@ -39,9 +39,9 @@ namespace Game.Scripts.StateHandlers
                     {
                         case "position":
                         {
-                            //Position position = obj.Value as Position;
-                            //playerController.DesiredPosition.x = position.x;
-                            //playerController.DesiredPosition.z = position.z;
+                            Position position = obj.Value as Position;
+                            controllerUnit.DesiredPosition.x = position.x;
+                            controllerUnit.DesiredPosition.z = position.z;
                             
                             Debug.Log("position changed");
                             break;
