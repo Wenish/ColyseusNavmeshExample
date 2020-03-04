@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225260926c1080e438467b74723d9432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ServerText: {fileID: 0}
+  PrefabPlayer: {fileID: 8035110164388584723, guid: b3f535edbee2a1940a69e49021e309fb,
+    type: 3}

@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
 using Colyseus;
 using Game.Models;
 
@@ -6,6 +8,9 @@ namespace Game.Scripts
 {
     public class GameManager : MonoBehaviour
     {
+        public TextMeshProUGUI ServerText; 
+        public GameObject PrefabPlayer;
+        public Dictionary<string, GameObject> Players = new Dictionary<string, GameObject>();
         public Room<State> GameRoom;
         private Client _client;
         public async void Start()
@@ -30,6 +35,8 @@ namespace Game.Scripts
             _client = new Client("ws://localhost:3000");
 
             GameRoom = await _client.JoinOrCreate<State>("match"/* , Dictionary of options */);
+            
+            ServerText.text = serverip + ":" + serverport + " room: " + roomname;
         }
 
         private void OnApplicationQuit()
