@@ -12,6 +12,8 @@ namespace Game.Scripts
         public TextMeshProUGUI ServerText; 
         public GameObject PrefabUnit;
         public Dictionary<string, GameObject> Units = new Dictionary<string, GameObject>();
+        
+        public Dictionary<string, Player> Players = new Dictionary<string, Player>();
         public Room<State> GameRoom;
         private Client _client;
         public async void Start()
@@ -35,7 +37,13 @@ namespace Game.Scripts
 
             _client = new Client("ws://localhost:3000");
 
-            GameRoom = await _client.JoinOrCreate<State>("match"/* , Dictionary of options */);
+            try {
+                GameRoom = await _client.JoinOrCreate<State>("match"/* , Dictionary of options */);
+            } catch {
+                ServerText.text = "Connection failed";
+                return;
+            }
+
             
             ServerText.text = serverip + ":" + serverport + " room: " + roomname;
 
@@ -43,13 +51,14 @@ namespace Game.Scripts
         }
 
         private void InitStateHandler() {
+            var stateHandlerPlayers = new StateHandlerPlayers(GameRoom.State.statePlayers, this);
             var stateHandlerUnits = new StateHandlerUnits(GameRoom.State.stateUnits, this);
         }
 
-        private void OnApplicationQuit()
+        private async void OnApplicationQuit()
         {
             Debug.Log("Leave");
-            GameRoom.Leave();
+            await GameRoom.Leave();
         }
 
         private static string GetArg(string name)

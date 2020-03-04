@@ -1,5 +1,4 @@
 using Game.Models;
-using Colyseus.Schema;
 using UnityEngine;
 using Game.Scripts.Controllers;
 
@@ -9,15 +8,15 @@ namespace Game.Scripts.StateHandlers
     {
         private StateUnits _stateUnits;
         private GameManager _gameManager;
-        public StateHandlerUnits(StateUnits statePlayers, GameManager gameManager)
+        public StateHandlerUnits(StateUnits stateUnits, GameManager gameManager)
         {
-            _stateUnits = statePlayers;
+            _stateUnits = stateUnits;
             _gameManager = gameManager;
-            _stateUnits.units.OnAdd += OnAddUnit;
-            _stateUnits.units.OnRemove += OnRemoveUnit;
-            _stateUnits.units.OnChange += OnChangeUnit;
+            _stateUnits.units.OnAdd += OnAdd;
+            _stateUnits.units.OnRemove += OnRemove;
+            _stateUnits.units.OnChange += OnChange;
         }
-        private void OnAddUnit(Unit unit, string key)
+        private void OnAdd(Unit unit, string key)
         {
             Debug.Log(key);
             GameObject gameObjectUnit = Object.Instantiate(
@@ -57,7 +56,7 @@ namespace Game.Scripts.StateHandlers
             };
         }
 
-        private void OnRemoveUnit(Unit unit, string key)
+        private void OnRemove(Unit unit, string key)
         {
             string idUnit = key;
             GameObject gameObjectUnit = _gameManager.Units[idUnit];
@@ -66,7 +65,7 @@ namespace Game.Scripts.StateHandlers
             Debug.Log("Player Remove");
         }
 
-        private void OnChangeUnit(Unit unit, string key)
+        private void OnChange(Unit unit, string key)
         {
             Debug.Log("Player Change");
         }

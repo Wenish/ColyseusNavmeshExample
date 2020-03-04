@@ -32,13 +32,6 @@ export default class Match extends Room<IState> {
     onJoin (client: Client, options: any, auth: any) {
         const actionPlayerAdd: Action<IState, Client> = actions[actionTypes.PLAYER_ADD]
         actionPlayerAdd(this, this.state, true, client, null)
-        const player = this.state.statePlayers.players[client.sessionId]
-        const actionUnitMoveTo: Action<IState, Client> = actions[actionTypes.UNIT_MOVE_TO]
-        actionUnitMoveTo(this, this.state, true, client, {
-            x: 2,
-            z: 17,
-            idUnit: player.idUnit
-        })
     }
 
     // When a client sends a message
