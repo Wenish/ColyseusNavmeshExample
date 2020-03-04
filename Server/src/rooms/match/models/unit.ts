@@ -14,4 +14,11 @@ export class Unit extends Schema {
     update(currentTime?: number) {
         /* update Unit stuff */
     }
+
+    static generate (): Unit {
+        const unit = new Unit()
+        unit.position = new Position(10, 0, 10)
+
+        return unit;
+    }
 }

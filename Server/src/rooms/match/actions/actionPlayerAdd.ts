@@ -10,7 +10,7 @@ export const actionPlayerAdd: Action<IState, Client> = (room, state, isServer, c
         if (!isServer) throw 'action can only be called from server'
         if (!client) throw 'no client was passed'
 
-        const unit = new Unit()
+        const unit = Unit.generate()
     
         state.stateUnits.addUnit(unit)
     
