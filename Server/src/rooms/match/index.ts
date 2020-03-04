@@ -32,11 +32,11 @@ export default class Match extends Room<IState> {
     onMessage (client: Client, message: any) {
         console.log(client.sessionId)
         console.log(message)
-        if (actions[message.ACTION_TYPE]) {
+        if (actions[message?.ACTION_TYPE]) {
             const action = actions[message.ACTION_TYPE]
             action(this, this.state, false, client, message.payload)
         } else {
-            console.log('There is no action with this action type:', message.ACTION_TYPE)
+            console.log('There is no action with this action type:', message?.ACTION_TYPE)
         }
     }
 

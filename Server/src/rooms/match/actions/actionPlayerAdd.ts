@@ -5,7 +5,7 @@ import { Unit } from "../models/unit";
 import { Player } from "../models/player";
 import { PLAYER_ADD } from "./actionTypes";
 
-const actionPlayerAdd: Action<IState, Client> = (room, state, isServer, client, payload) => {
+export const actionPlayerAdd: Action<IState, Client> = (room, state, isServer, client, payload) => {
     try {
         if (!isServer) throw 'action can only be called from server'
         if (!client) throw 'no client was passed'
@@ -21,5 +21,3 @@ const actionPlayerAdd: Action<IState, Client> = (room, state, isServer, client, 
         console.error('Error', PLAYER_ADD, err)
     }
 }
-
-export default actionPlayerAdd 

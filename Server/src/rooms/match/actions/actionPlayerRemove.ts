@@ -4,7 +4,7 @@ import { Client } from "colyseus";
 import { PLAYER_REMOVE } from "./actionTypes";
 import { Player } from "../models/player";
 
-const actionPlayerRemove: Action<IState, Client> = (room, state, isServer, client, payload) => {
+export const actionPlayerRemove: Action<IState, Client> = (room, state, isServer, client, payload) => {
     try {
         if (!isServer) throw 'action can only be called from server'
         if (!client) throw 'no client was passed'
@@ -21,5 +21,3 @@ const actionPlayerRemove: Action<IState, Client> = (room, state, isServer, clien
         console.error('Error', PLAYER_REMOVE, err)
     }
 }
-
-export default actionPlayerRemove
