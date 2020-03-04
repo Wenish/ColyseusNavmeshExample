@@ -30,6 +30,25 @@ namespace Game.Scripts.StateHandlers
 
             _gameManager.Units.Add(key, gameObjectUnit);
             Debug.Log("Player Add");
+
+            unit.OnChange += (changes) =>
+            {
+                changes.ForEach((obj) =>
+                {
+                    switch(obj.Field)
+                    {
+                        case "position":
+                        {
+                            //Position position = obj.Value as Position;
+                            //playerController.DesiredPosition.x = position.x;
+                            //playerController.DesiredPosition.z = position.z;
+                            
+                            Debug.Log("position changed");
+                            break;
+                        }
+                    }
+                });
+            };
         }
 
         private void OnRemoveUnit(Unit unit, string key)
