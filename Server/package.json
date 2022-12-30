@@ -19,7 +19,7 @@
   "dependencies": {
     "@colyseus/monitor": "^0.12.1",
     "bignumber.js": "^9.0.0",
-    "colyseus": "^0.12.3",
+    "colyseus": "^0.14.24",
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
     "navmesh": "^2.0.3",
